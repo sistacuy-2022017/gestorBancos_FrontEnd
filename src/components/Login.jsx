@@ -26,7 +26,7 @@ export const Login = ({ switchAuthHandler }) => {
             ></div>
             <div className="w-full mx-auto px-10 lg:px-20 flex-col items-center space-y-6 relative z-10">
               <h1 className="text-white font-bold text-4xl font-sans text-center lg:text-left">
-                Simple App
+                Infinity Trust Bank
               </h1>
               <p className="text-white mt-1 text-center lg:text-left">The simplest app to use</p>
               <div className="flex justify-center lg:justify-start mt-6">
@@ -34,7 +34,7 @@ export const Login = ({ switchAuthHandler }) => {
                   href="#"
                   className="hover:bg-indigo-700 hover:text-white hover:-translate-y-1 transition-all duration-500 bg-white text-indigo-800 mt-4 px-4 py-2 rounded-2xl font-bold mb-2"
                 >
-                  Get Started
+                  Home Page
                 </a>
               </div>
             </div>
@@ -43,7 +43,7 @@ export const Login = ({ switchAuthHandler }) => {
             <div className="w-full">
               <form className="bg-white rounded-md shadow-2xl p-5">
                 <h1 className="text-gray-800 font-bold text-2xl mb-1 text-center lg:text-left">
-                  Hello Again!
+                  Hello there!
                 </h1>
                 <p className="text-sm font-normal text-gray-600 mb-8 text-center lg:text-left">
                   Welcome Back
