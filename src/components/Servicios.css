@@ -1,0 +1,55 @@
+body {
+    font-family: var(--font-inter), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-inter), sans-serif;
+}
+
+.img-service-container {
+    position: relative; /* Establece un posicionamiento relativo para que los elementos hijos puedan tener un posicionamiento absoluto con respecto a este contenedor */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.img-service {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    position: absolute; /* Establece un posicionamiento absoluto para que el texto se pueda superponer sobre la imagen */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Ajusta el fondo del texto para que sea semi-transparente */
+    padding: 20px; /* Añade un poco de espacio entre el texto y el borde de la tarjeta */
+}
+
+.card {
+    border: 1px solid #ddd; /* Añade un borde gris claro a las tarjetas */
+    border-radius: 8px; /* Redondea las esquinas de las tarjetas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+    transition: box-shadow 0.3s ease; /* Añade una transición suave al pasar el cursor sobre las tarjetas */
+    position: relative; /* Asegura que los elementos absolutos se posicionen con respecto a esta tarjeta */
+    overflow: hidden; /* Oculta los elementos que se desborden */
+}
+
+.card:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al pasar el cursor sobre las tarjetas */
+}
+
+.discount-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom-right-radius: 8px;
+}
