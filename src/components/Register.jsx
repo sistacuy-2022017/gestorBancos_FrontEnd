@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "./Input.jsx"; // Asegúrate de que la ruta sea correcta
 import "./Login.css"; // Asegúrate de crear y enlazar este archivo CSS
+import AnimatedBackground from "./AnimatedBackground.jsx";
 
 export const Register = ({ switchAuthHandler }) => {
   const [formData, setFormData] = useState({
@@ -30,6 +31,7 @@ export const Register = ({ switchAuthHandler }) => {
   };
 
   return (
+    <AnimatedBackground>
     <div className="form-container">
       <div className="flex flex-col lg:flex-row w-full max-w-screen-lg mx-auto bg-white rounded-md shadow-2xl overflow-hidden">
         <div className="hidden lg:flex w-full lg:w-1/2 login_img_section justify-around items-center relative">
@@ -131,6 +133,7 @@ export const Register = ({ switchAuthHandler }) => {
         </div>
       </div>
     </div>
+    </AnimatedBackground>
   );
 };
 
