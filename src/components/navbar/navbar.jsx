@@ -20,8 +20,8 @@ export const Navbar = () => {
                     </button>
                     <div className="hidden md:flex items-center">
                         <button className="bg-gray-700 text-white p-3 rounded mr-2">...</button>
-                        <button className="bg-white text-black p-3 rounded mr-2">Button</button>
-                        <button className="bg-black text-white p-3 rounded">Share</button>
+                        <button className="bg-white text-black p-3 rounded mr-2">Transferir</button>
+                        <button className="bg-black text-white p-3 rounded">Log out</button>
                         <img
                             src="https://img.freepik.com/vector-premium/icono-perfil-usuario-estilo-plano-ilustracion-vector-avatar-miembro-sobre-fondo-aislado-concepto-negocio-signo-permiso-humano_157943-15752.jpg"
                             alt="User avatar"
@@ -34,8 +34,8 @@ export const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden w-full flex flex-col items-start bg-gray-900 p-4">
                     <button className="bg-gray-700 text-white p-3 rounded my-1 w-full text-left">...</button>
-                    <button className="bg-white text-black p-3 rounded my-1 w-full text-left">Button</button>
-                    <button className="bg-black text-white p-3 rounded my-1 w-full text-left">Share</button>
+                    <button className="bg-white text-black p-3 rounded my-1 w-full text-left">Transferir</button>
+                    <button className="bg-black text-white p-3 rounded my-1 w-full text-left">Log out</button>
                 </div>
             )}
         </nav>
