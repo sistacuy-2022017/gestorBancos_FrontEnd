@@ -1,19 +1,31 @@
-import { Navbar } from '../../components/navbar/Navbar.jsx';
-import { Acount } from '../../components/Acount/Acount.jsx';
-import { User } from '../../components/User/User.jsx';
-import { Divisas } from '../../components/Divisas/Divisas.jsx';
-import { Ofertas } from '../../components/ServiciosOferta/Ofertas-services.jsx';
-import { Services } from '../../components/ServiciosOferta/Servicios.jsx'
+import { useEffect, useState } from "react";
+import { Navbar } from "../../components/navbar/Navbar.jsx";
+import { Divisas } from "../../components/Divisas/Divisas.jsx";
+import { User } from "../../components/User/User.jsx";
+import { LoadingSpinner } from "../../components/LoadingSpinner.jsx";
+import "../../styles/LoadingSpinner.css"; // Ruta a tu archivo CSS de LoadingSpinner
+import { Content } from "../../components/dashboard/Content.jsx";
 
 export const DashboardPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simular una carga rápida
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Cambiar a 1000ms (1 segundo) para simular una carga rápida
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
-    <div class="flex min-h-screen flex-col bg-gray-100 text-gray-800">
+    <div className="dashboard-container">
       <Navbar />
-      <User />
-      <Divisas />
-      <Acount />
-      <Ofertas />
-      <Services />
+      <Content/>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from './servicesLayout';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importamos Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Servicios.css';
 
 const servicesData = [
