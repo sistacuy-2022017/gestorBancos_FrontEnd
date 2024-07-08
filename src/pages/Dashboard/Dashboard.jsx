@@ -1,4 +1,4 @@
-import { Navbar } from '../../components/navbar/Navbar.jsx';
+import { Navbar } from '../../components/NavbarUsers/Navbar.jsx';
 import { Acount } from '../../components/Acount/Acount.jsx';
 import { User } from '../../components/User/User.jsx';
 import { Divisas } from '../../components/Divisas/Divisas.jsx';
@@ -10,10 +10,6 @@ export const DashboardPage = () => {
     <div class="flex min-h-screen flex-col bg-gray-100 text-gray-800">
       <Navbar />
       <User />
-      <Divisas />
-      <Acount />
-      <Ofertas />
-      <Services />
     </div>
   );
 };

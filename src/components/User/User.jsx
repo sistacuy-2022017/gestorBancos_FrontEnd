@@ -6,7 +6,7 @@ export const User = () => {
                     <img src="https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser-blue-dotted-line-line-icon-png-image_1491314.jpg" alt="" className="w-64 h-64 object-cover" />
                 </div>
 
-                <div className="flex flex-col items-center gap-4 p-8">
+                <div className="flex flex-col items-center gap-4">
                     <h3 className="text-xl font-bold text-slate-800">Ejemplo 1</h3>
                     <p className="text-center text-sm text-slate-600">Numero de cuenta: </p>
 
