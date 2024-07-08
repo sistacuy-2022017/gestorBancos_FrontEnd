@@ -1,8 +1,8 @@
 export const User = () => {
     return (
-        <div className="flex h-screen w-full items-center justify-center bg-slate-200 p-10">
-            <div className="w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 rounded-xl bg-white shadow-lg transform translate-x-10">
-                <div className="flex justify-center p-4">
+        <div className="flex h-screen w-full items-center justify-end bg-slate-200 p-8">
+            <div className="w-90 rounded-xl bg-white shadow-lg">
+                <div className="flex justify-center p-10">
                     <img src="https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser-blue-dotted-line-line-icon-png-image_1491314.jpg" alt="" className="w-32 h-32 rounded-full object-cover" />
                 </div>
 
