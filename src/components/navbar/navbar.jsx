@@ -76,6 +76,7 @@ export const Navbar = () => {
                 src="https://img.freepik.com/vector-premium/icono-perfil-usuario-estilo-plano-ilustracion-vector-avatar-miembro-sobre-fondo-aislado-concepto-negocio-signo-permiso-humano_157943-15752.jpg"
                 alt="User avatar"
                 className="ml-2 rounded-full"
+                
                 style={{ width: "50px", height: "50px" }}
                 onClick={handleNavigateToSettingsPage}
               />
