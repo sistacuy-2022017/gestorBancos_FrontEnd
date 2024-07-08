@@ -1,12 +1,15 @@
-import {Acount} from "../Acount/Acount.jsx";
-import {User} from "../User/User.jsx";
-import {Divisas} from "../Divisas/Divisas.jsx";
+
+import { User } from "../User/User.jsx";
+import { Divisas } from "../Divisas/Divisas.jsx";
+import { ContentPagesUser } from "../../pages/Dashboard/ContentPagesUser.jsx";
 
 export const DashboarUser = () => {
     return (
-        <div className="content-container">
-            <User />
-            <Divisas />
-        </div>
+        <>
+            <ContentPagesUser
+                nav={<User />}
+                main={<Divisas />}
+            />
+        </>
     )
 }
