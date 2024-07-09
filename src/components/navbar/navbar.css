@@ -1,0 +1,21 @@
+/* Archivo CSS */
+
+/* Estilos para el botón, sin cambios */
+.nav-button {
+    padding: 10px 20px; /* Ajusta el padding según sea necesario */
+    background-color: white; /* Color de fondo */
+    color: black; /* Color del texto */
+    border: 1px solid #E0E0E0; /* Borde */
+    border-radius: 9999px; /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+.nav-button:hover {
+    background-color: #E0E0E0; /* Color de fondo al pasar el ratón por encima */
+}
+
+/* Estilos para el navbar */
+.navbar {
+    background-color: white ; /* Color de fondo azul celeste para todo el navbar */
+}
+    
