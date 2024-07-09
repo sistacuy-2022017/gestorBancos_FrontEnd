@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom'; // Importa ReactDOM desde 'react-dom'
 import { App } from './App';
+import { CreateService } from './components/Servicios/AgregarServicio'
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 
