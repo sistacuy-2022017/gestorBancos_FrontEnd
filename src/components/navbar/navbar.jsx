@@ -59,7 +59,7 @@ export const Navbar = () => {
     };
 
     return (
-        <nav className="navbar w-full flex relative justify-between items-center mx-auto px-8 h-21">
+        <nav className="navbar w-full flex relative justify-between items-center mx-auto px-8 h-21 bg-gray-900">
             <div className="inline-flex">
                 <a href="/" className="hidden md:block">
                     <img src={logo} alt="Logo" style={{ width: '102px', height: '102px' }} />

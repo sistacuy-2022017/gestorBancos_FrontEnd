@@ -5,3 +5,14 @@ const apiClient = axios.create({
     timeout: 1000,
 });
 
+
+export const login = async (data) => {
+    try{
+        return await apiClient.post('/auth/login', data)
+    }catch(e){
+        return{
+            error: true,
+            e 
+        }
+    }
+}

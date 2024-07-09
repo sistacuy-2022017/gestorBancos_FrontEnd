@@ -3,7 +3,6 @@
 /* Estilos para el botón, sin cambios */
 .nav-button {
     padding: 10px 20px; /* Ajusta el padding según sea necesario */
-    background-color: white; /* Color de fondo */
     color: black; /* Color del texto */
     border: 1px solid #E0E0E0; /* Borde */
     border-radius: 9999px; /* Bordes redondeados */

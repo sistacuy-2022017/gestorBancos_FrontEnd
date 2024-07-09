@@ -14,7 +14,7 @@ export const useLogin = () => {
             setIsLoading(false);
 
             if (response.error) {
-                const errorMsg = response.error || 'Ocurrió un error al iniciar sesión, intenta de nuevo';
+                const errorMsg = response.e?.response?.data?.msg || 'Ocurrió un error al iniciar sesión, intenta de nuevo';
                 toast.error(errorMsg);
                 return; // Salimos de la función para evitar duplicar el manejo del error
             }
