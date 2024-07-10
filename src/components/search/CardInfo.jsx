@@ -15,7 +15,7 @@ export const CardInfo = ({ account }) => {
             <div className="p-6">
                 <h2 className="text-xl font-bold mb-2">Información de Cuenta</h2>
                 <p className="text-gray-700 mb-2"><strong>No. de Cuenta:</strong> {account.accountNumber}</p>
-                <p className="text-gray-700 mb-2"><strong>Balance de Cuenta:</strong> {account.balance}</p>
+                <p className="text-gray-700 mb-2"><strong>Balance de Cuenta:</strong> Q{account.balance}</p>
                 <p className="text-gray-700 mb-4"><strong>Tipo de Cuenta:</strong> {account.typeAccount}</p>
                 <div className="flex space-x-2">
                     <button
