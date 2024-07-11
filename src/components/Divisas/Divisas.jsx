@@ -40,7 +40,7 @@ export const Divisas = () => {
     };
 
     return (
-        <div className="fixed bottom-0 left-0 p-4">
+        <div className="bottom-0 left-0 p-4">
             <section className="converter bg-white p-4 rounded-lg shadow-lg">
                 <form onSubmit={handleSubmit}>
                     <select

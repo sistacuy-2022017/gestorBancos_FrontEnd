@@ -162,14 +162,14 @@ export const ServicesAd = () => {
                                 </button>
                             </div>
                             <div className="modal-body">
-                                {/* Renderiza el componente CreateService aquí */}
+                               
                                 <CreateService />
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
                                     Close
                                 </button>
-                                {/* Puedes agregar más botones según sea necesario */}
+                                
                             </div>
                         </div>
                     </div>

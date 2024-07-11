@@ -14,7 +14,7 @@ export const useLogin = () => {
             setIsLoading(false);
 
             if (response.error) {
-                const errorMsg = response.e?.response?.data?.msg || 'Ocurrió un error al iniciar sesión, intenta de nuevo 1';
+                const errorMsg = response.e?.response?.data?.msg || 'Ocurrió un error al iniciar sesión, intenta de nuevo';
                 toast.error(errorMsg);
                 return; // Salimos de la función para evitar duplicar el manejo del error
             }
@@ -24,7 +24,7 @@ export const useLogin = () => {
             navigate('/');
         } catch (error) {
             setIsLoading(false);
-            toast.error(error.message || 'Ocurrió un error al iniciar sesión, intenta de nuevo 2');
+            toast.error(error.message || 'Ocurrió un error al iniciar sesión, intenta de nuevo');
         }
     };
 
