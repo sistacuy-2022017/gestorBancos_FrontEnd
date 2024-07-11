@@ -8,8 +8,8 @@ export const Content = () => {
     return(
         <div className="content-container">
             <Routes>
-                <Route path="/"/>
-                <Route path="/dashboardUser" element={<DashboarUser/>}/>
+            <Route path="/" element={<Ofertas/>}/>
+            <Route path="/dashboardUser" element={<DashboarUser/>}/>
                 <Route path="/Acount" element={<Acount/>}/>
             </Routes>
         </div>
