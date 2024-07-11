@@ -45,7 +45,7 @@ export const Login = ({ switchAuthHandler }) => {
           </div>
           <div className="flex w-full lg:w-1/2 justify-center items-center bg-white p-8 lg:p-16 space-y-8">
             <div className="w-full">
-              <form className="bg-white rounded-md shadow-2xl p-5" onSubmit={handleSubmit}>
+
               <form className="bg-white rounded-md shadow-2xl p-5" onSubmit={handleSubmit}>
                 <h1 className="text-gray-800 font-bold text-2xl mb-1 text-center lg:text-left">
                   Hello there!
@@ -91,5 +91,5 @@ export const Login = ({ switchAuthHandler }) => {
         </div>
       </div>
     </AnimatedBackground>
-  );
+  );
 };
