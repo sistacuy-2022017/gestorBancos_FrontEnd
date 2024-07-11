@@ -1,17 +1,18 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'http://127.0.0.1:5173/api/v1/convert',
+    baseURL: 'http://127.0.0.1:8080/BicBank/v1',
     timeout: 1000,
 });
 
-export const divisas = async (data) => {
-    try {
-        return await apiClient.post('/', data);
-    } catch (e) {
-        return {
+
+export const login = async (data) => {
+    try{
+        return await apiClient.post('/auth/login', data)
+    }catch(e){
+        return{
             error: true,
-            e
+            e 
         }
     }
 }

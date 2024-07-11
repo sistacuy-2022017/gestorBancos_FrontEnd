@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Navbar } from "../../components/navbar/navbar.jsx";
 import { Divisas } from "../../components/Divisas/Divisas.jsx";
 import { User } from "../../components/User/User.jsx";
+import { ProfileMenu } from "../../components/UserMenu/UserMenu.jsx";
 import { LoadingSpinner } from "../../components/LoadingSpinner.jsx";
 import "../../styles/LoadingSpinner.css"; // Ruta a tu archivo CSS de LoadingSpinner
 import { Content } from "../../components/dashboard/Content.jsx";
