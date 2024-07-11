@@ -27,7 +27,7 @@ export const User = () => {
     return (
         <>
             <div className="flex h-screen w-full items-start justify-end bg-slate-200 p-8">
-                <div className="mt-8 mr-8 w-96 rounded-xl bg-white shadow-lg">
+                <div className="mt-8 mr-8 w-94 rounded-xl bg-white shadow-lg">
                     <div className="flex justify-center p-10">
                         <img
                             src="https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser-blue-dotted-line-line-icon-png-image_1491314.jpg"
@@ -53,7 +53,7 @@ export const User = () => {
                             <div>
                                 <h4 className="text-sm font-semibold text-slate-800">Saldo Actual:</h4>
                                 {userData && (
-                                    <span className="text-xs text-slate-600">${userData.balance}/year</span>
+                                    <span className="text-xs text-slate-600">${userData.balance}</span>
                                 )}
                             </div>
 
