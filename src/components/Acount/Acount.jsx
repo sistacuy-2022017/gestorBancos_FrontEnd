@@ -1,28 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import useFavorites from '../../shared/hooks/useFavorites';
 import "./acount.css";
-
-const favorites = [
-    {
-        accountNumber: 1234567890,
-        DPI: 1234567890123,
-        alias: "Cuenta principal"
-    },
-    {
-        accountNumber: 9876543210,
-        DPI: 9876543210987,
-        alias: "Ahorros"
-    },
-    {
-        accountNumber: 4567890123,
-        DPI: 4567890123456,
-        alias: "Fondo de inversión"
-    }
-];
 
 export const Acount = () => {
     const [inputText, setInputText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const inputRef = useRef(null);
+    const { favorites } = useFavorites();
 
     useEffect(() => {
         document.addEventListener('click', handleOutsideClick);
@@ -115,3 +99,5 @@ export const Acount = () => {
         </>
     );
 };
+
+export default Acount;
