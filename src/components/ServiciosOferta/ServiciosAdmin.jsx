@@ -59,8 +59,8 @@ export const ServicesAd = () => {
     
     return (
         <Layout>
-            <div className="container">
-                <div className="row mb-4">
+            <div className="container mt-8 mb-7">
+                <div className="row mb-7">
                     <div className="col text-center">
                         <div className="space-y-2">
                             <div className="inline-block rounded-lg bg-gray-200 dark:bg-gray-700 px-3 py-1 text-sm text-gray-800 dark:text-gray-300">

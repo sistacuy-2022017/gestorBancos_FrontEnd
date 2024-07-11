@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 
 export const Favorites = () => {
     const [formData, setFormData] = useState({
+        
         dpi: '',
         accountNumber: '',
         alias: ''
