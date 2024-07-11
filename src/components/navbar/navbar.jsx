@@ -43,7 +43,6 @@ export const Navbar = () => {
     navigate('/Petitions');
   };
 
-
   const handleLogout = () => {
     logout();
   };
@@ -51,20 +50,16 @@ export const Navbar = () => {
   return (
     <nav className="navbar bg-gray-900">
       <div className="navbar-logo">
-        <a href="/DashboardAdmin">
+        <a href="/">
           <img src={logo} alt="Logo" width={110} className="navbar-logo-img" />
         </a>
       </div>
       <div className="nav-buttons-container flex items-center">
-        <NavButton text="Favoritos" onClickHandler={handleNavigateToChannelsPage} />
         
-        {role === 'ADMIN_ROLE' ? (
-          <NavButton text="Listar Cuentas" onClickHandler={handleNavigateToSettingsPage} />,
-          <NavButton text="Peticiones" onClickHandler={handleNavigateToPeticiones} />
+        {role === 'ADMIN_ROLE' && <NavButton text="Listar Cuentas" onClickHandler={handleNavigateToSettingsPage} />}
+        {role === 'ADMIN_ROLE' && <NavButton text="Peticiones" onClickHandler={handleNavigateToPeticiones} />}
+        {role === 'USER_ROLE' && <NavButton text="Favoritos" onClickHandler={handleNavigateToChannelsPage} />}
 
-        ) : (
-          <NavButton text="User Button" onClickHandler={() => {}} />
-        )}
 
         {!isLogged ? (
           <NavButton text="Login" onClickHandler={handleNavigateToAuthPage} />

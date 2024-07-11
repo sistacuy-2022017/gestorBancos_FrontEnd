@@ -13,6 +13,7 @@ export const useGetRequest = () => {
                 const response = await getRequest();
                 console.log('Request response:', response);
                 if (!response.error) {
+                    console.log('Entities:', response.data.entities);
                     setRequestData(response.data.entities); // Ajusta según la estructura de tu respuesta de solicitud
                 } else {
                     setError(response.e?.response?.data || 'Error fetching request');
