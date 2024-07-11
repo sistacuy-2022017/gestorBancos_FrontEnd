@@ -118,3 +118,14 @@ export const postTransaccion = async (data) => {
         }
     }
 }
+
+export const postUser = async (data) => {
+    try {
+        return await apiClient.post('/user/post', data);
+    } catch (e) {
+        return {
+            error: true,
+            e,
+        }
+    }
+}
