@@ -107,3 +107,14 @@ export const getRequest = async () => {
         }
     }
 }
+
+export const postTransaccion = async (data) => {
+    try {
+        return await apiClient.post('/transaction/post', data);
+    } catch (e) {
+        return {
+            error: true,
+            e,
+        }
+    }
+}

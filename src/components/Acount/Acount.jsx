@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import useFavorites from '../../shared/hooks/useFavorites';
+
+import { useTransaction } from '../../shared/useTransaction.jsx';
 import "./acount.css";
 
 export const Acount = () => {
@@ -7,6 +9,7 @@ export const Acount = () => {
     const [suggestions, setSuggestions] = useState([]);
     const inputRef = useRef(null);
     const { favorites } = useFavorites();
+    const { amount, handleChangeAmount, accountOrigin, accountDestination, postTransaction, error } = useTransaction();
 
     useEffect(() => {
         document.addEventListener('click', handleOutsideClick);
@@ -46,6 +49,17 @@ export const Acount = () => {
         setSuggestions([]);
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const response = await postTransaction();
+        if (!response.error) {
+            console.log('Transaction successful:', response);
+            // Aquí podrías añadir lógica adicional después de una transacción exitosa
+        } else {
+            console.error('Transaction failed:', response.e);
+        }
+    };
+
     return (
         <>
             <div className='flex items-center justify-center min-h-screen from-purple-900 via-indigo-800 to-indigo-500 bg-gradient-to-br'>
@@ -80,6 +94,8 @@ export const Acount = () => {
                             <input
                                 type="number"
                                 step="0.01"
+                                value={amount}
+                                onChange={handleChangeAmount}
                                 className="border w-full py-2 px-2 rounded shadow hover:border-indigo-600 ring-1 ring-inset ring-gray-300 font-mono"
                             />
                         </div>
@@ -91,13 +107,17 @@ export const Acount = () => {
                             />
                         </div>
                         <div className="flex gap-3 pt-3 items-center">
-                            <button className="border hover:border-indigo-600 px-4 py-2 rounded-lg shadow ring-1 ring-inset ring-gray-300">Transferir Ahora</button>
+                            <button
+                                onClick={handleSubmit} // Llama a handleSubmit en el click del botón
+                                className="border hover:border-indigo-600 px-4 py-2 rounded-lg shadow ring-1 ring-inset ring-gray-300"
+                            >
+                                Transferir Ahora
+                            </button>
                         </div>
+                        {error && <p className="text-red-500 text-xs italic">Error: {error.message}</p>}
                     </div>
                 </div>
             </div>
         </>
     );
 };
-
-export default Acount;
