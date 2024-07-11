@@ -45,7 +45,7 @@ export const Ofertas = () => {
 
     return (
         <Layout>
-            <div className="container">
+            <div className="container mt-8">
                 <div className="row mb-4">
                     <div className="col text-center">
                         <div className="space-y-2">

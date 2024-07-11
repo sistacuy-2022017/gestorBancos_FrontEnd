@@ -21,6 +21,7 @@ export const User = () => {
             setShowModal(false);
         }
     };
+
     const storedName = localStorage.getItem('name');
     const parsedName = storedName ? JSON.parse(storedName) : 'Guest';
 
@@ -71,8 +72,8 @@ export const User = () => {
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                     <div className="modal-overlay fixed inset-0 bg-black opacity-50" onClick={handleBackdropClick}></div>
-                    <div className="modal-container bg-white w-96 rounded-lg shadow-lg z-50" ref={modalRef}>
-                        <div className="modal-header p-4">
+                    <div className="modal-container bg-white w-96 lg:w-1/3 rounded-lg shadow-lg z-50" ref={modalRef}>
+                        <div className="modal-header p-4 flex justify-between items-center border-b">
                             <h3 className="text-lg font-semibold text-gray-800">Historial de Transacciones</h3>
                             <button className="close-button" onClick={handleCloseModal}>
                                 <svg
@@ -86,10 +87,10 @@ export const User = () => {
                                 </svg>
                             </button>
                         </div>
-                        <div className="modal-body p-4">
+                        <div className="modal-body p-4 overflow-y-auto max-h-96">
                             <TransactionHistory />
                         </div>
-                        <div className="modal-footer p-4">
+                        <div className="modal-footer p-4 border-t">
                             <button className="btn btn-secondary" onClick={handleCloseModal}>
                                 Cerrar
                             </button>
