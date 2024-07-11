@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import { useTransaction } from '../../shared/useTransaction.jsx';
+import useFavorites from '../../shared/hooks/useFavorites';
+import toast from 'react-hot-toast';
 
 export const TransaccionForm = () => {
     const {
@@ -12,12 +14,57 @@ export const TransaccionForm = () => {
         error,
     } = useTransaction();
 
+    const [inputText, setInputText] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const inputRef = useRef(null);
+    const { favorites } = useFavorites();
+
+    useEffect(() => {
+        document.addEventListener('click', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('click', handleOutsideClick);
+        };
+    }, []);
+
+    const handleOutsideClick = (event) => {
+        if (inputRef.current && !inputRef.current.contains(event.target)) {
+            setSuggestions([]);
+        }
+    };
+
+    const handleInputClick = () => {
+        setSuggestions(favorites);
+    };
+
+    const handleInputChange = (event) => {
+        let value = event.target.value;
+        value = value.replace(/[^\d]/g, ''); // Limpiar el valor para permitir solo números
+
+        setInputText(value);
+
+        const filteredSuggestions = favorites.filter(favorite =>
+            favorite.accountNumber.toString().includes(value)
+        );
+
+        setSuggestions(filteredSuggestions);
+    };
+
+    const handleSelectSuggestion = (suggestion) => {
+        setInputText(suggestion.accountNumber.toString());
+        setSuggestions([]);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await postTransaction();
         if (!response.error) {
+            toast.success('Transaction successful');
             console.log('Transaction successful:', response);
+            // Limpiar el formulario después de una transacción exitosa
+            setInputText('');
         } else {
+            toast.error('Transaction failed');
             console.error('Transaction failed:', response.e);
         }
     };
@@ -43,15 +90,29 @@ export const TransaccionForm = () => {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100"
                 />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 relative" ref={inputRef}>
                 <label className="block text-gray-700 text-sm font-bold mb-2">Account Destination:</label>
                 <input
                     type="text"
-                    value={accountDestination}
-                    onChange={handleChangeAccountDestination}
+                    value={inputText}
+                    onClick={handleInputClick}
+                    onChange={handleInputChange}
                     required
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
+                {suggestions.length > 0 && (
+                    <ul className="absolute bg-white w-full max-h-36 overflow-y-auto border border-gray-300 rounded-b-lg shadow-lg top-full left-0 z-10">
+                        {suggestions.map((suggestion, index) => (
+                            <li
+                                key={index}
+                                className="cursor-pointer px-4 py-2 hover:bg-gray-100 truncate"
+                                onClick={() => handleSelectSuggestion(suggestion)}
+                            >
+                                {suggestion.accountNumber} • {suggestion.alias}
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
             <div className="flex items-center justify-between">
                 <button
@@ -66,3 +127,4 @@ export const TransaccionForm = () => {
     );
 };
 
+export default TransaccionForm;
