@@ -3,8 +3,9 @@ import { Box, Button, TextField, Typography, FormControlLabel, Checkbox } from '
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Dropzone from 'react-dropzone';
 import './CreateService.css'; // Asegúrate de enlazar correctamente tu archivo CSS
+import useAgregarServicio from '../../shared/useAgregarServicio'; // Importa el hook useAgregarServicio
 
-export const CreateService = () => {
+export const CreateService = ({ onClose }) => {
     const [serviceData, setServiceData] = useState({
         name: '',
         description: '',
@@ -23,6 +24,8 @@ export const CreateService = () => {
         image: false
     });
 
+    const { agregarServicio, isLoading, error } = useAgregarServicio();
+
     const handleChange = (event) => {
         const { name, value, checked } = event.target;
 
@@ -36,7 +39,7 @@ export const CreateService = () => {
             }
         } else if (name === 'price') {
             // Validar que el valor solo contenga números
-            const regex = /^[0-9]*$/;
+            const regex = /^[0-9.]*$/; // Permitir números y punto decimal
             if (value === '' || regex.test(value)) {
                 setServiceData({ ...serviceData, [name]: value });
             }
@@ -45,7 +48,7 @@ export const CreateService = () => {
         }
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Validar campos requeridos
@@ -67,8 +70,9 @@ export const CreateService = () => {
         setRequiredFields({ ...requiredFieldsCheck });
 
         if (isValid) {
-            console.log(serviceData);
-            // Lógica para enviar los datos al servidor
+            await agregarServicio(serviceData);
+            onClose(); // Cerrar el modal después de crear el servicio
+            window.location.reload();
         }
     };
 
@@ -135,7 +139,7 @@ export const CreateService = () => {
                                     error={requiredFields.price}
                                     helperText={requiredFields.price && 'Price is required'}
                                     className="mb-3"
-                                    inputProps={{ pattern: '[0-9]*' }} // Asegura que solo acepte números
+                                    inputProps={{ pattern: '[0-9.]+' }} // Asegura que solo acepte números y punto decimal
                                 />
                                 <TextField
                                     variant="outlined"
@@ -173,7 +177,7 @@ export const CreateService = () => {
                             </div>
                             <div className="mb-3">
                                 <Dropzone
-                                    acceptedFiles=".jpg,.jpeg,.png"
+                                    accept={{ 'image/jpeg': [], 'image/png': [] }} // Tipos MIME válidos
                                     multiple={false}
                                     onDrop={handleDrop}
                                     onDragOver={handleDragOver}
@@ -199,23 +203,40 @@ export const CreateService = () => {
                                             ) : (
                                                 <>
                                                     <CloudUploadIcon sx={{ color: "primary.main", mr: 2 }} />
-                                                    <Typography variant="body2">Drag 'n' drop or click to select an image</Typography>
+                                                    <Typography variant="body2">Drag 'n' drop an image here, or click to select one</Typography>
                                                 </>
                                             )}
                                         </Box>
                                     )}
                                 </Dropzone>
-                                {requiredFields.image && (
-                                    <Typography variant="body2" color="error">Image is required</Typography>
-                                )}
+                                {requiredFields.image &&
+                                    <Typography color="error" variant="body2">
+                                        Image is required
+                                    </Typography>
+                                }
+                                <input
+                                    type="file"
+                                    id="image"
+                                    name="image"
+                                    style={{ display: 'none' }}
+                                    onChange={handleFileInputChange}
+                                    accept="image/jpeg, image/png"
+                                />
                             </div>
+                            {error &&
+                                <Typography color="error" variant="body2" className="mb-3">
+                                    {error}
+                                </Typography>
+                            }
                             <Button
+                                type="submit"
                                 variant="contained"
                                 color="primary"
-                                type="submit"
-                                className="block w-full bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2"
+                                disabled={isLoading}
+                                fullWidth
+                                className="mt-3"
                             >
-                                Create Service
+                                {isLoading ? 'Loading...' : 'Create Service'}
                             </Button>
                         </form>
                     </div>
@@ -224,3 +245,5 @@ export const CreateService = () => {
         </Box>
     );
 };
+
+export default CreateService;

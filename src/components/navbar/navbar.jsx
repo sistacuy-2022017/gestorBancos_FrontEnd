@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ProfileMenu } from "../User/UserMenu.jsx";
+import { ProfileMenu } from "../UserMenu/UserMenu.jsx";
 import "./navbar.css";
 import logo from '../../assets/logo.png'; // Importa tu imagen desde la carpeta img
 
@@ -73,7 +73,7 @@ export const Navbar = () => {
                             <ProfileMenu />
                         </>
                     ) : (
-                        <button className="nav-button flex items-center relative cursor-pointer whitespace-nowrap bg-white" onClick={handleNavigateToAuthPage}>Login</button>
+                        <button className="nav-button flex items-center relative cursor-pointer whitespace-nowrap" onClick={handleNavigateToAuthPage}>Login</button>
                     )}
                 </div>
             </div>
