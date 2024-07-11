@@ -33,7 +33,7 @@ export const useLogin = () => {
 
             const userDetails = { token, role };
             localStorage.setItem('user', JSON.stringify(userDetails));
-
+            console.log(token)
             if (role === 'ADMIN_ROLE') {
                 navigate('/adminDashboard');
             } else {

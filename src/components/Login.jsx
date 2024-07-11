@@ -23,7 +23,8 @@ export const Login = ({ switchAuthHandler }) => {
   };
 
   return (
-    <AnimatedBackground>
+    <>
+      {/*AnimatedBackground*/}
       <div className="form-container">
         <div className="flex flex-col lg:flex-row w-full max-w-screen-lg mx-auto bg-white rounded-md shadow-2xl overflow-hidden">
           <div className="hidden lg:flex w-full lg:w-1/2 login_img_section justify-around items-center relative">
@@ -88,6 +89,8 @@ export const Login = ({ switchAuthHandler }) => {
           </div>
         </div>
       </div>
-    </AnimatedBackground>
+      {/*</AnimatedBackground>*/}
+    </>
+
   );
 };
