@@ -14,7 +14,7 @@ export const Input = ({
     onChangeHandler(event.target.value, field);
   };
 
-
+ 
 
   return (
     <div className="mb-3"> {/* Reducido de mb-5 a mb-3 */}

@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Input } from "./Input.jsx"; // Asegúrate de que la ruta sea correcta
 import "./Login.css"; // Asegúrate de crear y enlazar este archivo CSS
 import AnimatedBackground from "./AnimatedBackground.jsx";
+import { useRegister } from "../shared/hooks/index.js"; // Importamos el hook useRegister
 
 export const Register = ({ switchAuthHandler }) => {
+  const { register, isLoading } = useRegister(); // Utilizamos el hook useRegister
+
   const [formData, setFormData] = useState({
     name: '',
     nickname: '',
@@ -12,7 +15,9 @@ export const Register = ({ switchAuthHandler }) => {
     direction: '',
     phone: '',
     workName: '',
-    workDirection: ''
+    workDirection: '',
+    typeAccount: 'DEBIT', // Valor por defecto
+    income: 0.00 // Valor por defecto
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -31,11 +36,24 @@ export const Register = ({ switchAuthHandler }) => {
   };
 
   const handleInputBlur = (value, field) => {
-    if (!value && ['name', 'nickname', 'DPI', 'email', 'direction', 'phone'].includes(field)) {
+    if (!value && ['name', 'nickname', 'DPI', 'email', 'direction', 'phone', 'workName', 'workDirection'].includes(field)) {
       setFormErrors({ ...formErrors, [field]: `${field} is required` });
     } else {
       setFormErrors({ ...formErrors, [field]: '' });
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Validar aquí si hay errores antes de llamar a register
+    const hasErrors = Object.values(formErrors).some(error => error !== '');
+    if (hasErrors) {
+      return; // Mostrar mensaje de errores si es necesario
+    }
+
+    // Llamar a la función register con los datos del formulario
+    register(formData);
   };
 
   return (
@@ -51,7 +69,7 @@ export const Register = ({ switchAuthHandler }) => {
               <p className="text-white mt-1 text-center lg:text-left">The simplest app to use</p>
               <div className="flex justify-center lg:justify-start mt-6">
                 <a
-                  href="#"
+                  href="/"
                   className="hover:bg-indigo-700 hover:text-white hover:-translate-y-1 transition-all duration-500 bg-white text-indigo-800 mt-4 px-4 py-2 rounded-2xl font-bold mb-2"
                 >
                   Home Page
@@ -61,7 +79,7 @@ export const Register = ({ switchAuthHandler }) => {
           </div>
           <div className="flex w-full lg:w-1/2 justify-center items-center bg-white p-8 lg:p-16 space-y-4"> {/* Cambiado space-y-8 a space-y-4 */}
             <div className="w-full">
-              <form className="bg-white rounded-md shadow-2xl p-5">
+              <form className="bg-white rounded-md shadow-2xl p-5" onSubmit={handleSubmit}>
                 <h1 className="text-gray-800 font-bold text-2xl mb-1 text-center lg:text-left">
                   Welcome!
                 </h1>
@@ -165,12 +183,38 @@ export const Register = ({ switchAuthHandler }) => {
                       validationMessage={formErrors.workDirection}
                     />
                   </div>
+                  <div className="w-full lg:w-1/2 px-3 mb-3">
+                    <Input
+                      field="typeAccount"
+                      label="Type of Account"
+                      type="text"
+                      value={formData.typeAccount}
+                      onChangeHandler={handleInputChange}
+                      onBlurHandler={handleInputBlur}
+                      showErrorMessage={formErrors.typeAccount}
+                      validationMessage={formErrors.typeAccount}
+                    />
+                  </div>
+                  <div className="w-full lg:w-1/2 px-3 mb-3">
+                    <Input
+                      field="income"
+                      label="Income"
+                      type="number"
+                      step="0.01"
+                      value={formData.income}
+                      onChangeHandler={handleInputChange}
+                      onBlurHandler={handleInputBlur}
+                      showErrorMessage={formErrors.income}
+                      validationMessage={formErrors.income}
+                    />
+                  </div>
                 </div>
                 <button
                   type="submit"
                   className="block w-full bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2"
+                  disabled={isLoading}
                 >
-                  Register Now
+                  {isLoading ? 'Loading...' : 'Register Now'}
                 </button>
                 <div className="flex justify-between mt-4">
                   <a
@@ -189,4 +233,3 @@ export const Register = ({ switchAuthHandler }) => {
   );
 };
 
-export default Register;

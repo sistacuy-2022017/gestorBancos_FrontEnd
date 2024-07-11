@@ -1,26 +1,24 @@
 /* Archivo CSS */
 
-/* Estilos para el botón, sin cambios */
+/* Estilos para el botón */
 .nav-button {
-    padding: 10px 20px;
-    /* Ajusta el padding según sea necesario */
-    color: black;
-    /* Color del texto */
-    border: 1px solid #E0E0E0;
-    /* Borde */
-    border-radius: 9999px;
-    /* Bordes redondeados */
-    transition: background-color 0.3s, color 0.3s;
-    /* Transición suave */
+    padding: 12px 24px; /* Ajusta el padding según sea necesario para hacer los botones más grandes */
+    color: #d50d0d; /* Color del texto rojo, coincide con el navbar */
+    background-color: #FFFFFF; /* Fondo blanco inicial */
+    border: 2px solid #FFFFFF; /* Borde blanco inicial */
+    border-radius: 9999px; /* Bordes redondeados */
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transiciones suaves */
+    cursor: pointer; /* Cursor apuntador */
 }
 
 .nav-button:hover {
-    background-color: #E0E0E0;
-    /* Color de fondo al pasar el ratón por encima */
+    background-color: #d50d0d; /* Color de fondo al pasar el ratón por encima, coincide con el navbar */
+    border-color: #d50d0d; /* Color del borde al pasar el ratón por encima, coincide con el navbar */
+    color: #FFFFFF; /* Color del texto blanco al pasar el ratón por encima */
 }
 
-/* Estilos para el navbar */
-.navbar {
-    background-color: white;
-    /* Color de fondo azul celeste para todo el navbar */
+/* Estilo para el logo */
+.navbar-logo-img {
+    width: 110px; /* Ancho del logo */
+    height: auto; /* Altura automática para mantener la proporción */
 }

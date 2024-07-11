@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const apiClient = axios.create({
     baseURL: 'http://127.0.0.1:8080/BicBank/v1',
-    baseURL: 'http://127.0.0.1:8080/BicBank/v1',
     timeout: 1000,
 });
 
@@ -18,7 +17,6 @@ try {
 } catch (e) {
     console.error("Error parsing user details from localStorage", e);
 }
-
 
 apiClient.interceptors.request.use(
     (config) => {
@@ -41,7 +39,7 @@ apiClient.interceptors.request.use(
     }
 );
 
-
+export default apiClient;
 
 export const login = async (data) => {
     try {
@@ -53,13 +51,14 @@ export const login = async (data) => {
         };
     }
 };
-export const divisas = async (data) => {
-    try {
-        return await apiClient.post('/', data);
-    } catch (e) {
-        return {
+
+export const register = async (data) => {
+    try{
+        return await apiClient.post('request/post', data)
+    }catch(e){
+        return{
             error: true,
-            e 
+            e
         }
     }
 }

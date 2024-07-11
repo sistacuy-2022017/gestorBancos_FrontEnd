@@ -21,8 +21,8 @@ export const User = () => {
 
     return (
         <>
-            <div className="flex h-screen w-full items-center justify-end bg-slate-200 p-14">
-                <div className="w-90 rounded-xl bg-white shadow-lg mt-[-7rem]">
+            <div className="flex h-screen w-full items-start justify-end bg-slate-200 p-8">
+                <div className="mt-8 mr-8 w-96 rounded-xl bg-white shadow-lg">
                     <div className="flex justify-center p-10">
                         <img src="https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser-blue-dotted-line-line-icon-png-image_1491314.jpg" alt="" className="w-32 h-32 rounded-full object-cover" />
                     </div>
@@ -40,7 +40,7 @@ export const User = () => {
                                 <span className="text-xs text-slate-600">$59.99/year</span>
                             </div>
 
-                            <button className="ml-auto text-xs font-semibold text-blue-800 underline underline-offset-1 hover:text-blue-700 hover:no-underline focus:text-blue-700 focus:no-underline" onClick={handleHistoryButtonClick}>Historial</button>
+                            <button className="ml-auto text-xs font-semibold text-blue-800 underline underline-offset-1 hover:text-blue-700 hover:no-underline focus:text-blue-700 focus:no-underline">Historial</button>
                         </div>
                     </div>
                 </div>

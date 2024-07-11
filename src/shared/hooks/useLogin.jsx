@@ -35,7 +35,7 @@ export const useLogin = () => {
             localStorage.setItem('user', JSON.stringify(userDetails));
 
             if (role === 'ADMIN_ROLE') {
-                navigate('/dashboardAdmin');
+                navigate('/adminDashboard');
             } else {
                 navigate('/dashboardUser');
             }
@@ -51,4 +51,3 @@ export const useLogin = () => {
         isLoading
     };
 };
-
