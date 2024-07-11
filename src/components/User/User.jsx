@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { TransactionHistory } from '../History/History'; // Asegúrate de que la ruta sea correcta
+import { CardInfo } from '../search/CardInfo.jsx';
+import { Router } from 'react-router-dom';
+
 
 export const User = () => {
     const [showModal, setShowModal] = useState(false);
@@ -40,7 +43,7 @@ export const User = () => {
                                 <span className="text-xs text-slate-600">$59.99/year</span>
                             </div>
 
-                            <button className="ml-auto text-xs font-semibold text-blue-800 underline underline-offset-1 hover:text-blue-700 hover:no-underline focus:text-blue-700 focus:no-underline">Historial</button>
+                            <button className="ml-auto text-xs font-semibold text-blue-800 underline underline-offset-1 hover:text-blue-700 hover:no-underline focus:text-blue-700 focus:no-underline">Historial </button>
                         </div>
                     </div>
                 </div>
@@ -51,7 +54,7 @@ export const User = () => {
                     <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div className="modal-content" ref={modalRef}>
                             <div className="modal-header">
-                                <h5 className="modal-title">Historial de Transacciones</h5>
+                                <h5 className="modal-title" >Historial de Transacciones</h5>
                                 <button type="button" className="close" onClick={handleCloseModal}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
