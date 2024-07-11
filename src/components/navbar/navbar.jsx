@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserDetails } from "../../shared/hooks/index.js";
 import { ProfileMenu } from "../UserMenu/UserMenu.jsx";
@@ -19,18 +18,31 @@ const NavButton = ({ text, onClickHandler }) => {
 export const Navbar = () => {
   const { isLogged, logout } = useUserDetails();
   const navigate = useNavigate();
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setRole(storedUser.role);
+    }
+  }, []);
 
   const handleNavigateToAuthPage = () => {
     navigate('/auth');
   };
 
   const handleNavigateToSettingsPage = () => {
-    navigate('/settings');
+    navigate('/ListCuentas');
   };
 
   const handleNavigateToChannelsPage = () => {
-    navigate('/channels');
+    navigate('/favoritos');
   };
+
+  const handleNavigateToPeticiones = () => {
+    navigate('/Petitions');
+  };
+
 
   const handleLogout = () => {
     logout();
@@ -39,19 +51,27 @@ export const Navbar = () => {
   return (
     <nav className="navbar bg-gray-900">
       <div className="navbar-logo">
-        <a href="/">
+        <a href="/DashboardAdmin">
           <img src={logo} alt="Logo" width={110} className="navbar-logo-img" />
         </a>
       </div>
       <div className="nav-buttons-container flex items-center">
-        <NavButton text="Browse" onClickHandler={handleNavigateToChannelsPage} />
+        <NavButton text="Favoritos" onClickHandler={handleNavigateToChannelsPage} />
+        
+        {role === 'ADMIN_ROLE' ? (
+          <NavButton text="Listar Cuentas" onClickHandler={handleNavigateToSettingsPage} />,
+          <NavButton text="Peticiones" onClickHandler={handleNavigateToPeticiones} />
+
+        ) : (
+          <NavButton text="User Button" onClickHandler={() => {}} />
+        )}
+
         {!isLogged ? (
           <NavButton text="Login" onClickHandler={handleNavigateToAuthPage} />
         ) : (
           <>
-            <NavButton text="My Account" onClickHandler={handleNavigateToSettingsPage} />
             <NavButton text="Logout" onClickHandler={handleLogout} style={{ marginRight: '8px' }} />
-            <ProfileMenu/>
+            <ProfileMenu />
           </>
         )}
       </div>

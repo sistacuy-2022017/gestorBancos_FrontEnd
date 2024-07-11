@@ -96,3 +96,25 @@ export const getTransactions = async (data) => {
         }
     }
 }
+
+export const getRequest = async () => {
+    try {
+        return await apiClient.get('/request/get');
+    } catch (e) {
+        return {
+            error: true,
+            e,
+        }
+    }
+}
+
+export const postTransaccion = async (data) => {
+    try {
+        return await apiClient.post('/transaction/post', data);
+    } catch (e) {
+        return {
+            error: true,
+            e,
+        }
+    }
+}
