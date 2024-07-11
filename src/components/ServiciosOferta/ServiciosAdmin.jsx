@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Layout from './servicesLayout'; // Asumiendo que tienes un componente Layout definido
 import { CreateService } from '../Servicios/AgregarServicio'; // Importa el componente CreateService
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +9,11 @@ export const ServicesAd = () => {
     const [showModal, setShowModal] = useState(false);
     const modalRef = useRef(null);
     const servicesData = useServices(); // Usa el hook useServices para obtener los datos de los servicios dinámicamente
+
+    // Función para actualizar la lista de servicios después de crear uno nuevo
+    const updateServices = () => {
+        // Aquí puedes forzar una recarga de datos si estás utilizando algún hook como useQuery o similar
+    };
 
     const handleCreateButtonClick = () => {
         setShowModal(true);
@@ -51,7 +56,7 @@ export const ServicesAd = () => {
             // alert('El servicio no está disponible en este momento.');
         }
     };
-
+    
     return (
         <Layout>
             <div className="container">
@@ -126,7 +131,7 @@ export const ServicesAd = () => {
                             </div>
                             <div className="modal-body">
                                 {/* Renderiza el componente CreateService aquí */}
-                                <CreateService />
+                                <CreateService onClose={handleCloseModal} />
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
