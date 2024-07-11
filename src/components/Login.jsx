@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Input } from "./Input.jsx"; // Asegúrate de que la ruta sea correcta
-import "./Login.css";
+import { Input } from "./Input.jsx";
 import AnimatedBackground from "./AnimatedBackground.jsx";
+import { useLogin } from "../shared/hooks/useLogin.jsx";
 
 export const Login = ({ switchAuthHandler }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { login, isLoading } = useLogin();
 
   const handleInputChange = (value, field) => {
     if (field === "email") {
@@ -13,6 +15,11 @@ export const Login = ({ switchAuthHandler }) => {
     } else if (field === "password") {
       setPassword(value);
     }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await login(email, password);
   };
 
   return (
@@ -29,6 +36,7 @@ export const Login = ({ switchAuthHandler }) => {
               <div className="flex justify-center lg:justify-start mt-6">
                 <a
                   className="hover:bg-indigo-700 hover:text-white hover:-translate-y-1 transition-all duration-500 bg-white text-indigo-800 mt-4 px-4 py-2 rounded-2xl font-bold mb-2"
+                  href="#"
                 >
                   Home Page
                 </a>
@@ -37,7 +45,7 @@ export const Login = ({ switchAuthHandler }) => {
           </div>
           <div className="flex w-full lg:w-1/2 justify-center items-center bg-white p-8 lg:p-16 space-y-8">
             <div className="w-full">
-              <form className="bg-white rounded-md shadow-2xl p-5">
+              <form className="bg-white rounded-md shadow-2xl p-5" onSubmit={handleSubmit}>
                 <h1 className="text-gray-800 font-bold text-2xl mb-1 text-center lg:text-left">
                   Hello there!
                 </h1>
@@ -63,8 +71,9 @@ export const Login = ({ switchAuthHandler }) => {
                 <button
                   type="submit"
                   className="block w-full bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2"
+                  disabled={isLoading}
                 >
-                  Login
+                  {isLoading ? "Loading..." : "Login"}
                 </button>
                 <div className="flex justify-between mt-4">
                   <span
@@ -80,5 +89,5 @@ export const Login = ({ switchAuthHandler }) => {
         </div>
       </div>
     </AnimatedBackground>
-  );
+  );
 };

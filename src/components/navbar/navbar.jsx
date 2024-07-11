@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ProfileMenu } from "../User/UserMenu.jsx";
+import "./navbar.css";
+import logo from '../../assets/logo.png'; // Importa tu imagen desde la carpeta img
+
+// Función simulada para decodificar token
+const decodeToken = (token) => {
+    // Aquí deberías implementar la lógica para decodificar el token
+    // Por ahora, retornaremos un objeto simulado
+    return {
+        role: "admin", // O "user"
+    };
+};
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [role, setRole] = useState(""); // Nuevo estado para el rol del usuario
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Simulando la recuperación del token y la configuración del estado
+        const token = localStorage.getItem("token");
+        if (token) {
+            const decodedToken = decodeToken(token);
+            setRole(decodedToken.role);
+            setIsLoggedIn(true);
+        }
+    }, []);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -15,7 +38,7 @@ export const Navbar = () => {
     };
 
     const handleNavigateToSettingsPage = () => {
-        navigate('/Acount');
+        navigate('/account');
     };
 
     const handleNavigateToChannelsPage = () => {
@@ -24,50 +47,36 @@ export const Navbar = () => {
 
     const handleLoginLogout = () => {
         if (isLoggedIn) {
-            // Placeholder for logout functionality
+            // Placeholder para funcionalidad de logout
+            localStorage.removeItem("token");
+            setIsLoggedIn(false);
+            setRole("");
             navigate('/auth');
         } else {
-            // Placeholder for login functionality
+            // Placeholder para funcionalidad de login
             navigate('/auth');
         }
-        setIsLoggedIn(!isLoggedIn);
     };
 
     return (
-        <nav id="header" className="w-full fixed top-0 left-0 z-30 py-4 bg-gray-900">
-            <div className="w-full flex items-center justify-between px-6">
-                <div className="flex items-center">
-                    <span className="text-white text-2xl">Banks</span>
-                </div>
-
-                <div className="flex items-center">
-                    <button className="bg-gray-700 text-white p-3 rounded md:hidden" onClick={toggleMenu}>
-                        Menu
-                    </button>
-                    <div className="hidden md:flex items-center">
-                        <button className="bg-gray-700 text-white p-3 rounded mr-2" onClick={handleNavigateToChannelsPage}>Browse</button>
-                        <button className="bg-white text-black p-3 rounded mr-2" onClick={handleNavigateToSettingsPage}>Transferir</button>
-                        <button className="bg-black text-white p-3 rounded mr-2" onClick={handleLoginLogout}>{isLoggedIn ? 'Log out' : 'Login'}</button>
-                        {isLoggedIn && (
-                            <img
-                                src="https://img.freepik.com/vector-premium/icono-perfil-usuario-estilo-plano-ilustracion-vector-avatar-miembro-sobre-fondo-aislado-concepto-negocio-signo-permiso-humano_157943-15752.jpg"
-                                alt="User avatar"
-                                className="ml-2 rounded-full"
-                                style={{ width: '50px', height: '50px' }}
-                                onClick={handleNavigateToSettingsPage}
-                            />
-                        )}
-                    </div>
+        <nav className="navbar w-full flex relative justify-between items-center mx-auto px-8 h-21 bg-gray-900">
+            <div className="inline-flex">
+                <a href="/" className="hidden md:block">
+                    <img src={logo} alt="Logo" style={{ width: '102px', height: '102px' }} />
+                </a>
+            </div>
+            <div className="flex-initial">
+                <div className="flex justify-end items-center relative">
+                    {isLoggedIn ? (
+                        <>
+                            {/* <button className="nav-button flex items-center relative cursor-pointer whitespace-nowrap" onClick={handleLoginLogout}>Log out</button> */}
+                            <ProfileMenu />
+                        </>
+                    ) : (
+                        <button className="nav-button flex items-center relative cursor-pointer whitespace-nowrap bg-white" onClick={handleNavigateToAuthPage}>Login</button>
+                    )}
                 </div>
             </div>
-            {isOpen && (
-                <div className="md:hidden w-full flex flex-col items-start bg-gray-900 p-4">
-                    <button className="bg-gray-700 text-white p-3 rounded my-1 w-full text-left" onClick={handleNavigateToChannelsPage}>Browse</button>
-                    <button className="bg-white text-black p-3 rounded my-1 w-full text-left" onClick={handleNavigateToSettingsPage}>Transferir</button>
-                    <button className="bg-black text-white p-3 rounded my-1 w-full text-left" onClick={handleLoginLogout}>{isLoggedIn ? 'Log out' : 'Login'}</button>
-                </div>
-            )}
         </nav>
     );
 };
-    

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { divisas } from "../../services/api.jsx";
+//import { divisas } from "../../services/api.jsx";
 import './divisas.css';
 
 export const Divisas = () => {
