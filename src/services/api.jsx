@@ -75,3 +75,24 @@ export const getAccountByToken = async () => {
     }
 };
 
+export const getAccount = async () => {
+    try {
+        return await apiClient.get('/account/get');
+    } catch (e) {
+        return {
+            error: true,
+            e,
+        }
+    }
+}
+
+export const getTransactions = async (data) => {
+    try {
+        return await apiClient.get(`/account/${data}`);
+    } catch (e) {
+        return {
+            error: true,
+            e,
+        }
+    }
+}

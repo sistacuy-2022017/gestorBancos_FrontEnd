@@ -9,27 +9,45 @@ export const useLogin = () => {
 
     const login = async (email, password) => {
         setIsLoading(true);
+
         try {
             const response = await loginRequest({ email, password });
             setIsLoading(false);
 
             if (response.error) {
-                const errorMsg = response.e?.response?.data?.msg || 'Ocurrió un error al iniciar sesión, intenta de nuevo 1';
-                toast.error(errorMsg);
-                return; // Salimos de la función para evitar duplicar el manejo del error
+                if (response.e?.response?.status === 400) {
+                    toast.error('Credenciales incorrectas. Por favor, verifica tu email y contraseña.');
+                } else {
+                    toast.error(response.e?.response?.data || 'Ocurrió un error al iniciar sesión, intenta de nuevo');
+                }
+                return;
             }
 
-            const { userDetails } = response.data;
+            const { token, role } = response.data;
+
+            if (!token || !role) {
+                console.error('No se recibieron datos de la respuesta:', response.data);
+                toast.error('Ocurrió un error al iniciar sesión, intenta de nuevo');
+                return;
+            }
+
+            const userDetails = { token, role };
             localStorage.setItem('user', JSON.stringify(userDetails));
-            navigate('/');
+
+            if (role === 'ADMIN_ROLE') {
+                navigate('/dashboardAdmin');
+            } else {
+                navigate('/dashboardUser');
+            }
         } catch (error) {
+            console.error('Error al iniciar sesión:', error);
+            toast.error('Ocurrió un error al iniciar sesión, intenta de nuevo');
             setIsLoading(false);
-            toast.error(error.message || 'Ocurrió un error al iniciar sesión, intenta de nuevo 2');
         }
     };
 
     return {
         login,
-        isLoading,
+        isLoading
     };
 };
