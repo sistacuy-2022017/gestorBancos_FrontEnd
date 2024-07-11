@@ -35,7 +35,7 @@ export const useLogin = () => {
             localStorage.setItem('user', JSON.stringify(userDetails));
             console.log(token)
             if (role === 'ADMIN_ROLE') {
-                navigate('/adminDashboard');
+                navigate('/DashboardAdmin');
             } else {
                 navigate('/dashboardUser');
             }
